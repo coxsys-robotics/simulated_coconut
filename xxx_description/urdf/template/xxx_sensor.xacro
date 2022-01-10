@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="xxx_sensor">
+    <xacro:include filename="$(find xxx_description)/urdf/xxx_properties.xacro"/>
+    <xacro:macro name="sensor" params="">
+        <link name="lidar">
+            <visual>
+                <geometry>
+                    <cylinder radius="${LIDAR_RADIUS}" length="${LIDAR_THICKNESS}"/>
+                </geometry>  
+            </visual>
+        </link>
+        <joint name="lidar_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="lidar"/>
+            <origin xyz="0.22 0.0 ${(BASE_HEIGHT+LIDAR_THICKNESS)/2}"/>
+        </joint>
+    </xacro:macro>
+</robot>

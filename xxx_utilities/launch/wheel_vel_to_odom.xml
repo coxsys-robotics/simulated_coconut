@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="joint_topic"/>
+  <node name="wheel_vel_to_odom" pkg="xxx_utilities" type="xxx_odom.py">
+    <remap from="/joint_states" to="$(arg joint_topic)" />
+  </node>
+</launch>

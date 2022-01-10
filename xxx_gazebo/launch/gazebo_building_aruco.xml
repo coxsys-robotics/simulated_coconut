@@ -1,0 +1,37 @@
+<launch>
+    
+  <env name="GAZEBO_MODEL_PATH" value="$(find xxx_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find xxx_gazebo)/worlds/my_first_world.world"/>
+  </include>
+  <!-- Spawn ArUco Tags -->
+  <include file="$(find xxx_gazebo)/launch/spawn_aruco.xml">
+    <arg name="x" default="-0.01" />
+    <arg name="y" default="4" />
+    <arg name="z" default="0.2" />
+    <arg name="roll" default="0.0" />
+    <arg name="pitch" default="0.0" />
+    <arg name="yaw" default="3.1415926" />
+    <arg name="ID" default="00" />
+  </include>
+
+  <include file="$(find xxx_gazebo)/launch/spawn_aruco.xml">
+    <arg name="x" default="-0.01" />
+    <arg name="y" default="4.2" />
+    <arg name="z" default="0.2" />
+    <arg name="roll" default="0.0" />
+    <arg name="pitch" default="0.0" />
+    <arg name="yaw" default="3.1415926" />
+    <arg name="ID" default="02" />
+  </include>
+  
+  <include file="$(find xxx_gazebo)/launch/spawn_aruco.xml">
+    <arg name="x" default="-2" />
+    <arg name="y" default="6.075" />
+    <arg name="z" default="0.2" />
+    <arg name="roll" default="0.0" />
+    <arg name="pitch" default="0.0" />
+    <arg name="yaw" default="-1.57079632679" />
+    <arg name="ID" default="01" />
+  </include>
+</launch>
