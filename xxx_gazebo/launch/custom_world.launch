@@ -1,12 +1,15 @@
 <launch>
-    <env name="GAZEBO_MODEL_PATH" value="$(find xxx_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+    <!-- Tell Gazebo where to look for models-->
+    <env name="GAZEBO_MODEL_PATH" value="$(find ****)/models:$(optenv GAZEBO_MODEL_PATH)" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find ****)/worlds/****.world"/>
+    </include>
+
     <node pkg="rviz" type="rviz" name="visualizer" args="-d $(find xxx_description)/rviz/config/xxx_config.rviz"/>
     <node pkg="robot_state_publisher" type="robot_state_publisher" name="URDFToTF"/>
     <node pkg="joint_state_publisher" type="joint_state_publisher" name="jointPublisher"/>
     <param name="robot_description" command="$(find xacro)/xacro $(find xxx_description)/urdf/xxx.xacro"/>
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
-        <arg name="world_name" value="$(find xxx_gazebo)/worlds/map.world"/>
-    </include>
+    
     <arg name="x" default="0"/>
     <arg name="y" default="0"/>
     <arg name="z" default="0"/>

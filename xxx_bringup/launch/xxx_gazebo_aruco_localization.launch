@@ -1,8 +1,8 @@
 <launch>
   <!-- Start Simulation in Gazebo with "building & ArUco tags"-->
-  <include file="$(find xxx_gazebo)/launch/gazebo_building_aruco.xml"/>
+  <include file="$(find ****)/launch/****"/>
   <!-- Spawn xxx robot with TF-->
-  <include file="$(find xxx_gazebo)/launch/gazebo_xxx_robot.xml">
+  <include file="$(find ****)/launch/****">
     <arg name="x" default="-1"/>
     <arg name="y" default="4"/>
     <arg name="z" default="0"/>
