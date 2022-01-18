@@ -64,7 +64,7 @@ class Node :
     def integrate(self,r,b):
         self.vx = (self.wheel[0]+self.wheel[1])*r/2
         self.vy = 0
-        self.vth = (self.wheel[0]-self.wheel[1])*r/b
+        self.vth = (self.wheel[1]-self.wheel[0])*r/b
         delta_x = (self.vx * cos(self.th) - self.vy * sin(self.th)) * self.dt
         delta_y = (self.vx * sin(self.th) + self.vy * cos(self.th)) * self.dt
         delta_th = self.vth * self.dt
