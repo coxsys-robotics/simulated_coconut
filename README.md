@@ -13,7 +13,7 @@ chmod +x xxx_odom.py
 chmod +x xxx_ik.py
 chmod +x aruco2robot.py
 chmod +x gazebo2robot.py
-roscd xxx_control.py
+roscd xxx_control/scripts
 chmod +x goal_giver.py
 chmod +x turtle2pose.py
 chmod +x pose_follower.py
