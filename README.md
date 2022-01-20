@@ -8,7 +8,6 @@ aruco_detect
 ```
 sudo apt install ros-noetic-effort-controllers
 sudo apt install ros-noetic-aruco-detect
-sudo apt install ros-noetic-fiducial-slam
 roscd xxx_utilities/scripts
 chmod +x xxx_odom.py
 chmod +x xxx_ik.py
