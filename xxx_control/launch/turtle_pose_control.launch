@@ -1,0 +1,12 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="simulator"/>
+    <node pkg="xxx_control" type="turtlesim2pose.py" name="adapter">
+        <remap from="turtle_pose" to="turtle1/pose"/>
+    </node>
+    <node pkg="xxx_control" type="goal_giver.py" name="goal_giver">
+        <remap from="goal" to="turtle_goal"/>
+    </node>
+    <node pkg="xxx_control" type="pose_follower.py" name="controller">
+        <remap from="cmd_vel" to="turtle1/cmd_vel"/>
+    </node> 
+</launch>

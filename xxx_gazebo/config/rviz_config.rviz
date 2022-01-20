@@ -7,9 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /Image1
-        - /Marker1
-        - /Marker1/Status1
         - /Axes1
+        - /Axes2
       Splitter Ratio: 0.5
     Tree Height: 355
   - Class: rviz/Selection
@@ -202,17 +201,6 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
-    - Class: rviz/Marker
-      Enabled: true
-      Marker Topic: /fiducials
-      Name: Marker
-      Namespaces:
-        fiducial: true
-        links: true
-        sigma: true
-        text: true
-      Queue Size: 100
-      Value: true
     - Alpha: 1
       Class: rviz/Axes
       Enabled: true
@@ -220,6 +208,15 @@ Visualization Manager:
       Name: Axes
       Radius: 0.009999999776482582
       Reference Frame: camera_optical
+      Show Trail: false
+      Value: true
+    - Alpha: 1
+      Class: rviz/Axes
+      Enabled: true
+      Length: 0.10000000149011612
+      Name: Axes
+      Radius: 0.009999999776482582
+      Reference Frame: fiducial_0
       Show Trail: false
       Value: true
   Enabled: true
@@ -250,7 +247,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.1719024181365967
+      Distance: 3.713016986846924
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -266,9 +263,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.27039834856987
+      Pitch: 0.47539836168289185
       Target Frame: <Fixed Frame>
-      Yaw: 5.533574104309082
+      Yaw: 4.138571262359619
     Saved: ~
 Window Geometry:
   Displays:

@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="turtlesim" type="turtlesim_node" name="simulator"/>
+    <node pkg="xxx_control" type="via_point_giver.py" name="planner"/>
+    <node pkg="xxx_control" type="via_point_follower.py" name="controller"/> 
+    <node pkg="xxx_description" type="turtle_to_TF2.py" name="tfBroadcaster"/>
+    <node pkg="rviz" type="rviz" name="visualizer" args="-d $(find xxx_description)/rviz/config/xxx_config.rviz"/>
+    <node pkg="robot_state_publisher" type="robot_state_publisher" name="URDFToTF"/>
+    <node pkg="joint_state_publisher" type="joint_state_publisher" name="jointPublisher"/>
+    <param name="robot_description" command="$(find xacro)/xacro $(find xxx_description)/urdf/xxx.xacro"/>
+</launch>
