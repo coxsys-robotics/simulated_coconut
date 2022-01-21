@@ -4,11 +4,11 @@
   <!-- Spawn xxx robot with TF-->
   <include file="$(find xxx_gazebo)/launch/gazebo_xxx_robot.xml">
     <arg name="x" default="-1.5"/>
-    <arg name="y" default="4.2"/>
+    <arg name="y" default="3.8"/>
     <arg name="z" default="0"/>
     <arg name="roll" default="0"/>
     <arg name="pitch" default="0"/>
-    <arg name="yaw" default="-0.1"/>
+    <arg name="yaw" default="0.1"/>
   </include>
   <!-- Launch AruCo Detection-->
   <node name="aruco_detect" pkg="aruco_detect" type="aruco_detect">

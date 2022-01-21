@@ -59,9 +59,9 @@
     <xacro:property name="WHEEL_COLOR" value="0 0 0 1"/>
     <xacro:property name="CASTOR_COLOR" value="0.5 0.5 0 1"/> 
     <!-- Joint Properties -->
-    <xacro:property name="U_MAX" value="10"/>
-    <xacro:property name="V_MAX" value="20"/>
-    <xacro:property name="WHEEL_JOINT_DAMP" value="0.8"/>
+    <xacro:property name="U_MAX" value="300"/>
+    <xacro:property name="V_MAX" value="300"/>
+    <xacro:property name="WHEEL_JOINT_DAMP" value="0"/>
     
 
 </robot>
