@@ -7,6 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
         - /Image1
+        - /Marker1
         - /Axes1
         - /Axes2
       Splitter Ratio: 0.5
@@ -201,6 +202,14 @@ Visualization Manager:
       Transport Hint: raw
       Unreliable: false
       Value: true
+    - Class: rviz/Marker
+      Enabled: true
+      Marker Topic: /fiducials
+      Name: Marker
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
     - Alpha: 1
       Class: rviz/Axes
       Enabled: true
@@ -209,6 +218,41 @@ Visualization Manager:
       Radius: 0.009999999776482582
       Reference Frame: camera_optical
       Show Trail: false
+      Value: true
+    - Angle Tolerance: 0.10000000149011612
+      Class: rviz/Odometry
+      Covariance:
+        Orientation:
+          Alpha: 0.5
+          Color: 255; 255; 127
+          Color Style: Unique
+          Frame: Local
+          Offset: 1
+          Scale: 1
+          Value: true
+        Position:
+          Alpha: 0.30000001192092896
+          Color: 204; 51; 204
+          Scale: 1
+          Value: true
+        Value: true
+      Enabled: true
+      Keep: 100
+      Name: Odometry
+      Position Tolerance: 0.10000000149011612
+      Queue Size: 10
+      Shape:
+        Alpha: 1
+        Axes Length: 1
+        Axes Radius: 0.10000000149011612
+        Color: 255; 25; 0
+        Head Length: 0.30000001192092896
+        Head Radius: 0.10000000149011612
+        Shaft Length: 1
+        Shaft Radius: 0.05000000074505806
+        Value: Arrow
+      Topic: /odometry/filtered
+      Unreliable: false
       Value: true
     - Alpha: 1
       Class: rviz/Axes
@@ -247,7 +291,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 3.713016986846924
+      Distance: 3.1719024181365967
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -263,9 +307,9 @@ Visualization Manager:
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.47539836168289185
+      Pitch: 0.4603981375694275
       Target Frame: <Fixed Frame>
-      Yaw: 4.138571262359619
+      Yaw: 3.6035683155059814
     Saved: ~
 Window Geometry:
   Displays:

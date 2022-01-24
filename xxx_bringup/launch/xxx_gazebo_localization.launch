@@ -23,8 +23,16 @@
     <remap from="/camera_info" to="/camera/camera_info" />
   </node>
   <!-- Launch Fiducial SLAM-->
-  <node pkg="fiducial_slam" type="fiducial_slam" name="fiducial_slam"/>
+  <!-- <node pkg="fiducial_slam" type="fiducial_slam" name="fiducial_slam"/> -->
   <!-- Launch Visualization RVIZ-->
   <node pkg="rviz" type="rviz" name="visualizer" args="-d $(find xxx_gazebo)/config/rviz_config.rviz"/>
+  <!-- Differential Drive -->
+  <node name="diff_drive" pkg="xxx_diff_drive" type="diff_drive.py">
+  </node>
+  <node name="aruco2robot" pkg="xxx_utilities" type="aruco2robot.py">
+  </node>
   
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_for_global" clear_params="true">
+        <rosparam command="load" file="$(find xxx_bringup)/params/ekf_template.yaml" />
+  </node>
 </launch>
