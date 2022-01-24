@@ -18,5 +18,7 @@ roscd xxx_control/scripts
 chmod +x goal_giver.py
 chmod +x turtlesim2pose.py
 chmod +x pose_follower.py
+roscd xxx_teleop/scripts
+chmod +x teleop.py
 roslaunch xxx_bringup xxx_gazebo_localization.launch
 ```
