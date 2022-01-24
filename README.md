@@ -8,6 +8,7 @@ aruco_detect
 ```
 sudo apt install ros-noetic-effort-controllers
 sudo apt install ros-noetic-aruco-detect
+sudo apt install ros-noetic-robot-localization
 roscd xxx_utilities/scripts
 chmod +x xxx_odom.py
 chmod +x xxx_ik.py
@@ -17,5 +18,5 @@ roscd xxx_control/scripts
 chmod +x goal_giver.py
 chmod +x turtlesim2pose.py
 chmod +x pose_follower.py
-roslaunch xxx_bringup xxx_gazebo_aruco_localization.launch
+roslaunch xxx_bringup xxx_gazebo_localization.launch
 ```
