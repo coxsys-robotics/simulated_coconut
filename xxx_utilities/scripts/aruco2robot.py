@@ -4,7 +4,7 @@ import rospy
 import tf
 from fiducial_msgs.msg import FiducialTransformArray, FiducialTransform
 from tf.transformations import euler_from_quaternion, quaternion_from_euler, quaternion_matrix, quaternion_from_matrix
-from geometry_msgs.msg import Pose, Twist, Transform, TransformStamped
+from geometry_msgs.msg import Pose, Twist, Transform, TransformStamped, PoseWithCovariance
 from std_msgs.msg import Bool
 from rospy.exceptions import ROSInterruptException
 import numpy as np
@@ -12,11 +12,14 @@ import math
 from std_srvs.srv import Empty, EmptyResponse
 
 class Node :
+    P = np.mat(np.diag([0.01]*3))
     def __init__(self):
         rospy.init_node('aruco2robot')
         rospy.Subscriber('/fiducial_transforms',FiducialTransformArray,self.callback_fiducial_transforms)
         self.id = 0
         self.pub_current_pose = rospy.Publisher('/current_pose',Pose,queue_size=10)
+        self.pub_current_pose_cov = rospy.Publisher('/current_pose_cov',PoseWithCovariance,queue_size=10)
+        
         self.pub_goal_pose = rospy.Publisher('/goal_pose',Pose,queue_size=10)
         self.H = Transform()
         self.timer = rospy.Timer(rospy.Duration(0.1), self.publish)
@@ -65,7 +68,23 @@ class Node :
             current_pose_msg.orientation.y = quat_r[1]
             current_pose_msg.orientation.z = quat_r[2]
             current_pose_msg.orientation.w = quat_r[3]
+            current_pose_cov_msg = PoseWithCovariance()
+            current_pose_cov_msg.pose = current_pose_msg
+            p_cov = np.array([0.001]*36).reshape(6,6)
+
+		    # position covariance
+            p_cov[0:2,0:2] = self.P[0:2,0:2]
+		    # orientation covariance for Yaw
+		    # x and Yaw
+            p_cov[5,0] = p_cov[0,5] = self.P[2,0]
+		    # y and Yaw
+            p_cov[5,1] = p_cov[1,5] = self.P[2,1]
+		    # Yaw and Yaw
+            p_cov[5,5] = self.P[2,2]
+
+            current_pose_cov_msg.covariance = tuple(p_cov.ravel().tolist())
             goal_pose_msg = Pose()
+
             #d = 0.6
             #goal_pose_msg.position.x = 0
             #quat_g = quaternion_from_euler(0,0,0)
@@ -74,6 +93,7 @@ class Node :
             #goal_pose_msg.orientation.z = quat_g[2]
             #goal_pose_msg.orientation.w = quat_g[3]
             self.pub_current_pose.publish(current_pose_msg)
+            self.pub_current_pose_cov.publish(current_pose_cov_msg)
             self.pub_goal_pose.publish(goal_pose_msg)
     def callback_shutDownTimer(self):
         self.timer.shutdown()
