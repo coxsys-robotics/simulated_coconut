@@ -1,0 +1,25 @@
+<launch>
+  <!-- Run Encoder Simulation-->
+  <node name="sim_encoder" pkg="sim_with_kalman" type="sim_encoder.py">
+    <remap from="/encoder" to="/raw_enc" />
+  </node>
+  <!-- Run Unwrapper-->
+  <node name="unwrapper" pkg="sim_with_kalman" type="unwrapper.py">
+    <remap from="/encoder" to="/raw_enc" />
+  </node>
+
+  <!-- Run Finite Difference-->
+  <node name="finite_difference" pkg="sim_with_kalman" type="enc_to_vel_finite.py">
+    <remap from="/encoder" to="/unwrap_enc" />
+    <remap from="/enc_vel" to="/fin_enc" />
+  </node>
+  <!-- Run Kalman Filter-->
+  <node name="kalman_filter" pkg="sim_with_kalman" type="enc_to_vel_kalman.py">
+    <remap from="/encoder" to="/unwrap_enc" />
+    <remap from="/enc_vel" to="/kal_enc" />
+  </node>
+  <!-- Plot -->
+  <node pkg="rqt_plot" type="rqt_plot" name="plot" 
+    args="/ground_truth /fin_enc kal_enc"/>
+  
+</launch>
