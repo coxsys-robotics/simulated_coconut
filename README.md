@@ -3,7 +3,10 @@ This repository contains ROS Packages that relates the simulated COCONUT robot i
 
 You need the following packages
 
+effort_controllers
 aruco_detect
+robot_localization
+
 
 ```
 sudo apt install ros-noetic-effort-controllers
