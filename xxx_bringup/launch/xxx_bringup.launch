@@ -28,9 +28,13 @@
     <remap from="cmd_left" to="/xxx/left_wheel_velocity_controller/command"/>
     <remap from="cmd_right" to="/xxx/right_wheel_velocity_controller/command"/>
   </node>
-  
-
+  <!-- Robot Localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_for_global" clear_params="true">
+    <rosparam command="load" file="$(find xxx_bringup)/params/ekf_template.yaml"/>
+  </node>
   <!-- Launch Visualization RVIZ-->
   <node pkg="rviz" type="rviz" name="visualizer" args="-d $(find xxx_gazebo)/config/rviz_config.rviz"/>
+  <node pkg="xxx_gui" type="xxx_gui.py" name="gui"/>
+  <node pkg="xxx_bringup" type="state_machine.py" name="state_machine"/>
   
 </launch>
