@@ -70,7 +70,7 @@ class Node :
             current_pose_msg.orientation.w = quat_r[3]
             current_pose_cov_msg = PoseWithCovariance()
             current_pose_cov_msg.pose = current_pose_msg
-            p_cov = np.array([0.001]*36).reshape(6,6)
+            p_cov = np.array([0.1]*36).reshape(6,6)
 
 		    # position covariance
             p_cov[0:2,0:2] = self.P[0:2,0:2]
