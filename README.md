@@ -6,12 +6,20 @@ You need the following packages
 effort_controllers
 aruco_detect
 robot_localization
-
+map_server
+amcl
+teb_local_planner
+navigation
 
 ```
 sudo apt install ros-noetic-effort-controllers
 sudo apt install ros-noetic-aruco-detect
 sudo apt install ros-noetic-robot-localization
+sudo apt install ros-noetic-map-server
+sudo apt install ros-noetic-amcl
+sudo apt install ros-noetic-teb-local-planner
+sudo apt install ros-noetic-navigation
+
 roscd xxx_utilities/scripts
 chmod +x xxx_odom.py
 chmod +x xxx_ik.py
