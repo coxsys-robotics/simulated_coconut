@@ -51,11 +51,7 @@ class Node :
         pygame.init()
         # Set up the drawing window
         rospy.Subscriber('/mode',UInt8,self.callback_mode)
-        self.pub_map = rospy.Publisher('/button_map',Bool,queue_size=50)
-        self.pub_sav = rospy.Publisher('/button_save',Bool,queue_size=50)
-        self.pub_can = rospy.Publisher('/button_cancel',Bool,queue_size=50)
-        self.pub_nav = rospy.Publisher('/button_start_nav',Bool,queue_size=50)
-        self.pub_fin = rospy.Publisher('/button_finish_nav',Bool,queue_size=50)
+        self.pub_map = rospy.Publisher('/mode_map',Bool,queue_size=50)
         self.mode = 0
     def callback_mode(self,msg):
         self.mode = msg.data
@@ -64,11 +60,6 @@ if __name__=='__main__':
     node = Node()
     game = Game()
     button_map = Button((100,100,150,70),"map")
-    button_nav = Button((500,100,150,70),"nav")
-    button_sav = Button((100,100,150,70),"save")
-    button_can = Button((500,100,150,70),"can")
-    button_fin = Button((100,100,150,70),"fin")
-    
     running = True
     while running:
         # Did the user click the window close button?
@@ -76,33 +67,11 @@ if __name__=='__main__':
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            elif event.type == pygame.MOUSEBUTTONUP:
-                msg = Bool()
-                if node.mode == 0:
-                    if button_map.isMouseHover(mouse):
-                        node.pub_map.publish(msg)
-                    elif button_nav.isMouseHover(mouse):
-                        node.pub_nav.publish(msg)
-                elif node.mode == 1:
-                    if button_sav.isMouseHover(mouse):
-                        node.pub_sav.publish(msg)
-                    elif button_can.isMouseHover(mouse):
-                        node.pub_can.publish(msg)
-                elif node.mode == 2:
-                    if button_fin.isMouseHover(mouse):
-                        node.pub_fin.publish(msg)
 
         # Fill the background with white
         game.screen.fill((255, 255, 255))
 
-        if node.mode == 0:
-            button_map.draw(game.screen,mouse)
-            button_nav.draw(game.screen,mouse)
-        elif node.mode == 1:
-            button_sav.draw(game.screen,mouse)
-            button_can.draw(game.screen,mouse)
-        elif node.mode == 2:
-            button_fin.draw(game.screen,mouse)
+        button_map.draw(game.screen,mouse)
         
         # Flip the display
         pygame.display.flip()
