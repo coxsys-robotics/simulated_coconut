@@ -14,7 +14,7 @@ class Node :
         srv_set_odom = rospy.Service('/set_odom',Empty,self.service_set_odom)
         rospy.Subscriber('/joint_states',JointState,self.callback_joint_state)
         rospy.Subscriber('/pose_to_set',Pose,self.callback_pose_to_set)
-        self.pub_odom = rospy.Publisher('/odom',Odometry,queue_size=50)
+        self.pub_odom = rospy.Publisher('/wheel/odom',Odometry,queue_size=50)
         self.odom_broadcaster = tf.TransformBroadcaster()
         self.wheel = np.array([0,0])
         self.x = 0
