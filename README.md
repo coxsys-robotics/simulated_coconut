@@ -19,8 +19,18 @@ sudo apt install ros-noetic-map-server
 sudo apt install ros-noetic-amcl
 sudo apt install ros-noetic-teb-local-planner
 sudo apt install ros-noetic-navigation
-
+roscd xxx_bringup/scripts
+chmod +x state_machine.py
+chmod +x my_state_machine.py
+roscd xxx_gui/scripts
+chmod +x xxx_gui.py
+chmod +x my_gui.py
+roscd xxx_navigation/scripts
+chmod +x check_status.py
+chmod +x warp_prevention.py
 roscd xxx_utilities/scripts
+chmod +x xxx_joint_state_effort.py
+chmod +x xxx_joint_state_vel.py
 chmod +x xxx_odom.py
 chmod +x xxx_ik.py
 chmod +x aruco2robot.py
@@ -29,12 +39,13 @@ roscd xxx_control/scripts
 chmod +x goal_giver.py
 chmod +x turtlesim2pose.py
 chmod +x pose_follower.py
-roscd xxx_teleop/scripts
 chmod +x teleop.py
 roscd xxx_diff_drive/scripts
 chmod +x diff_drive.py
 roscd sim_with_kalman/scripts
 chmod +x sim_encoder.py
 chmod +x unwrapper.py
-roslaunch xxx_bringup xxx_gazebo_localization.launch
+roslaunch xxx_bringup xxx_gazebo_robot_localization.launch
+roslaunch xxx_navigation navigation.launch
+
 ```
