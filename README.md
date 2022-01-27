@@ -22,7 +22,7 @@ sudo apt install ros-noetic-gmapping
 sudo apt install ros-noetic-amcl
 sudo apt install ros-noetic-teb-local-planner
 sudo apt install ros-noetic-navigation
-sudo apt install ros-noetic-move_base
+sudo apt install ros-noetic-move-base
 roscd xxx_bringup/scripts
 chmod +x state_machine.py
 chmod +x my_state_machine.py
