@@ -9,6 +9,7 @@ robot_localization
 map_server
 gmapping
 amcl
+global_planner
 teb_local_planner
 navigation
 move_base
@@ -21,6 +22,7 @@ sudo apt install ros-noetic-map-server
 sudo apt install ros-noetic-gmapping
 sudo apt install ros-noetic-amcl
 sudo apt install ros-noetic-teb-local-planner
+sudo apt install ros-noetic-global-planner
 sudo apt install ros-noetic-navigation
 sudo apt install ros-noetic-move-base
 roscd xxx_bringup/scripts
