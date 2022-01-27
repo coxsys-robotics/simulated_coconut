@@ -42,8 +42,6 @@ chmod +x goal_giver.py
 chmod +x turtlesim2pose.py
 chmod +x pose_follower.py
 chmod +x teleop.py
-roscd xxx_diff_drive/scripts
-chmod +x diff_drive.py
 roscd sim_with_kalman/scripts
 chmod +x sim_encoder.py
 chmod +x unwrapper.py
