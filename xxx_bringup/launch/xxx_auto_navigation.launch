@@ -1,0 +1,41 @@
+<launch>
+  <!-- Start Simulation in Gazebo with "building & ArUco tags"-->
+  <include file="$(find xxx_gazebo)/launch/gazebo_building_aruco.xml"/>
+  <!-- Spawn xxx robot with TF-->
+  <include file="$(find xxx_gazebo)/launch/gazebo_xxx_robot.xml">
+    <arg name="x" default="-1.5"/>
+    <arg name="y" default="3.8"/>
+    <arg name="z" default="0"/>
+    <arg name="roll" default="0"/>
+    <arg name="pitch" default="0"/>
+    <arg name="yaw" default="0.1"/>
+  </include>
+  <!-- Launch AruCo Detection-->
+  <node name="aruco_detect" pkg="aruco_detect" type="aruco_detect">
+    <param name="image_transport" value="compressed" />
+    <param name="publish_images" value="true" />
+    <param name="fiducial_len" value="0.15" />
+    <param name="dictionary" value="0" />
+    <param name="do_pose_estimation" value="true" />
+    <param name="ignore_fiducials" value="" />
+    <param name="fiducial_len_override" value="" />
+    <remap from="/camera/compressed" to="/camera/image_raw/compressed" />
+    <remap from="/camera_info" to="/camera/camera_info" />
+  </node>
+  <!-- Prepare for feedback control -->
+  <node name="aruco2robotcontrol" pkg="xxx_utilities" type="aruco2robot.py"/>
+  <node name="cmd_to_wheel_speed" pkg="xxx_utilities" type="xxx_ik.py">
+    <remap from="cmd_left" to="/xxx/left_wheel_velocity_controller/command"/>
+    <remap from="cmd_right" to="/xxx/right_wheel_velocity_controller/command"/>
+  </node>
+  <!-- Robot Localization -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_for_global" clear_params="true">
+    <rosparam command="load" file="$(find xxx_bringup)/params/ekf_template.yaml"/>
+  </node>
+  <!-- Launch Visualization RVIZ-->
+  <node pkg="rviz" type="rviz" name="visualizer" args="-d $(find xxx_gazebo)/config/rviz_config.rviz"/>
+  
+  <include file="$(find xxx_navigation)/launch/navigation.launch"/>
+  <node pkg="xxx_navigation" type="move_to_goal.py" name="move_to_goal"/>
+  
+</launch>

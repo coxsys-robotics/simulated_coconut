@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import pygame
+import pygame_textinput
 import rospy 
 from std_msgs.msg import UInt8, Bool
+import numpy as np
 def isInBox(var,size):
     return (size[0]<=var[0]<=size[0]+size[2]) and (size[1]<=var[1]<=size[1]+size[3])
 class Game:
@@ -51,11 +53,8 @@ class Node :
         pygame.init()
         # Set up the drawing window
         rospy.Subscriber('/mode',UInt8,self.callback_mode)
-        self.pub_map = rospy.Publisher('/button_map',Bool,queue_size=50)
-        self.pub_sav = rospy.Publisher('/button_sav',Bool,queue_size=50)
-        self.pub_nav = rospy.Publisher('/button_nav',Bool,queue_size=50)
-        self.pub_can = rospy.Publisher('/button_can',Bool,queue_size=50)
-        self.pub_fin = rospy.Publisher('/button_fin',Bool,queue_size=50)
+        self.pub_go = rospy.Publisher('/button_go',Bool,queue_size=50)
+        self.pub_goal_ID = rospy.Publisher('/goal_ID',UInt8,queue_size=50)
         self.mode = 0
     def callback_mode(self,msg):
         self.mode = msg.data
@@ -63,47 +62,37 @@ class Node :
 if __name__=='__main__':
     node = Node()
     game = Game()
-    button_map = Button((100,100,150,70),"map")
-    button_sav = Button((100,100,150,70),"save")
-    button_fin = Button((300,100,150,70),"finish")
-    button_nav = Button((300,100,150,70),"nav")
-    button_can = Button((300,100,150,70),"cancel")
+    button_go = Button((100,100,150,70),"Go")
+    button_wait = Button((100,100,150,70),"Wait")
     
+    textinput = pygame_textinput.TextInputVisualizer()
+
     running = True
     while running:
         # Did the user click the window close button?
         mouse = pygame.mouse.get_pos()
-        for event in pygame.event.get():
+        events = pygame.event.get()
+        textinput.update(events)
+        for event in events:
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.MOUSEBUTTONUP:
                 msg = Bool()
+                goal_msg = UInt8()
                 if node.mode == 0:
-                    if button_map.isMouseHover(mouse):
-                        node.pub_map.publish(msg)
-                    elif button_nav.isMouseHover(mouse):
-                        node.pub_nav.publish(msg)
-                elif node.mode == 1:
-                    if button_sav.isMouseHover(mouse):
-                        node.pub_sav.publish(msg)
-                    elif button_can.isMouseHover(mouse):
-                        node.pub_can.publish(msg)
-                elif node.mode == 2:
-                    if button_fin.isMouseHover(mouse):
-                        node.pub_fin.publish(msg)
+                    if button_go.isMouseHover(mouse):
+                        node.pub_go.publish(msg)
+                        goal_msg.data = np.uint8(int(textinput.value))
+                        node.pub_goal_ID.publish(goal_msg)
         # Fill the background with white
         game.screen.fill((255, 255, 255))
-
+        game.screen.blit(textinput.surface,(400,400))
+        
 
         if node.mode == 0:
-            button_map.draw(game.screen,mouse)
-            button_nav.draw(game.screen,mouse)
+            button_go.draw(game.screen,mouse)
         elif node.mode == 1:
-            button_sav.draw(game.screen,mouse)
-            button_can.draw(game.screen,mouse)
-        elif node.mode == 2:
-            button_fin.draw(game.screen,mouse)
-
+            button_wait.draw(game.screen,mouse)
         # Flip the display
         pygame.display.flip()
     # Done! Time to quit.
