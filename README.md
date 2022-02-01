@@ -25,6 +25,8 @@ sudo apt install ros-noetic-teb-local-planner
 sudo apt install ros-noetic-global-planner
 sudo apt install ros-noetic-navigation
 sudo apt install ros-noetic-move-base
+pip install networkx
+
 roscd xxx_bringup/scripts
 chmod +x state_machine.py
 chmod +x my_state_machine.py
