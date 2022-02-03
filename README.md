@@ -51,6 +51,8 @@ chmod +x teleop.py
 roscd sim_with_kalman/scripts
 chmod +x sim_encoder.py
 chmod +x unwrapper.py
+roscd xxx_graph/scripts
+chmod +x graph_map_generator.py
 roslaunch xxx_bringup xxx_gazebo_robot_localization.launch
 roslaunch xxx_navigation navigation.launch
 
