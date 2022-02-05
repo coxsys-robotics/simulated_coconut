@@ -37,25 +37,25 @@ rosrun rosserial_arduino make_libraries.py .
 
 6.) Installing Arduino megaAVR Package via Arduino IDE
 
-  *This step is Optional. Only neccessary if you use Arduino megaAVR boards such as Uno WiFi Rev2.
+  >This step is Optional. Only neccessary if you use Arduino megaAVR boards such as Uno WiFi Rev2.
 
-  **Tools > Board > Boards Manager 
+  >>Tools > Board > Boards Manager 
   
-  *Scroll down until you see "Arduino megaAVR Boards" and click the install button.
+  >Scroll down until you see "Arduino megaAVR Boards" and click the install button.
 
 7.) Choose your serial port and your board
 
 In Arduino IDE, 
   
-  *select your serial port
+  >select your serial port
   
-  **Tools > Port > /dev/ttyACM* (the same one from step 2)
+  >>Tools > Port > /dev/ttyACM* (the same one from step 2)
   
-  *(if your board is Arduino Mega 2560)
-  **Tools > Board > Arduino Mega or Mega 2560
+  >(if your board is Arduino Mega 2560)
+  >>Tools > Board > Arduino Mega or Mega 2560
   
-  *(if your board is Arduino Uno WiFi Rev2)
-  **Tools > Board > Arduino megaAVR Boards > Arduino Uno WiFi Rev2
+  >(if your board is Arduino Uno WiFi Rev2)
+  >>Tools > Board > Arduino megaAVR Boards > Arduino Uno WiFi Rev2
 
 8.) Load the folders to your sketchbook 
   
