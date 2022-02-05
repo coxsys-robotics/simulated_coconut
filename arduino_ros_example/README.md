@@ -32,14 +32,16 @@ cd <sketchbook>/libraries
 rosrun rosserial_arduino make_libraries.py .
 ```
 5.) Set your sketchbook in Arduino IDE
-File>Preferences> choose <sketchbook>
+
+  File>Preferences> choose <sketchbook>
 
 6.) Installing Arduino megaAVR Package via Arduino IDE
 
-This step is Optional. Only neccessary if you use Arduino megaAVR boards such as Uno WiFi Rev2.
+  This step is Optional. Only neccessary if you use Arduino megaAVR boards such as Uno WiFi Rev2.
 
-  Tools > Board > Boards Manager
-Scroll down until you see "Arduino megaAVR Boards" and click the install button.
+  Tools > Board > Boards Manager 
+  
+  Scroll down until you see "Arduino megaAVR Boards" and click the install button.
 
 7.) Choose your serial port and your board
 
